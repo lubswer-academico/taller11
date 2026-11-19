@@ -1,10 +1,12 @@
 import { useCallback, useState } from 'react';
+import { GroqDataSource } from '../../data/datasources/GroqDataSource';
 import { ChatRepositoryImpl } from '../../data/repositories/ChatRepositoryImpl';
 import { Message } from '../../domain/entities/Message';
 import { SendMessageUseCase } from '../../domain/usecases/SendMessageUseCase';
 
-// Inyección de dependencias: el hook construye el grafo de objetos
-const sendMessageUseCase = new SendMessageUseCase(new ChatRepositoryImpl());
+// Inyección de dependencias: para cambiar de proveedor (ej. GeminiDataSource) solo cambia esta instancia
+const proveedorIA = new GroqDataSource();
+const sendMessageUseCase = new SendMessageUseCase(new ChatRepositoryImpl(proveedorIA));
 
 export const useChat = () => {
     const [messages, setMessages] = useState<Message[]>([]);

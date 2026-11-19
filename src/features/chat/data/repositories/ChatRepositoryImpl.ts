@@ -1,16 +1,11 @@
 import { Message } from '../../domain/entities/Message';
 import { ChatRepository } from '../../domain/repositories/ChatRepository';
-import { GeminiDataSource } from '../datasources/GeminiDataSource';
+import { IProveedorIA } from '../datasources/IProveedorIA';
 
 export class ChatRepositoryImpl implements ChatRepository {
-    private dataSource: GeminiDataSource;
-
-    constructor() {
-        this.dataSource = new GeminiDataSource();
-    }
+    constructor(private readonly proveedorIA: IProveedorIA) {}
 
     async sendMessage(userMessage: string, history: Message[]): Promise<string> {
-        return this.dataSource.generateResponse(userMessage, history);
-
+        return this.proveedorIA.generateResponse(userMessage, history);
     }
 }

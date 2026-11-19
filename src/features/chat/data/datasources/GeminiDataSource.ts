@@ -1,7 +1,8 @@
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from '@google/generative-ai';
 import { Message } from '../../domain/entities/Message';
+import { IProveedorIA } from './IProveedorIA';
 
-export class GeminiDataSource {
+export class GeminiDataSource implements IProveedorIA {
     private genAI: GoogleGenerativeAI;
 
     constructor() {

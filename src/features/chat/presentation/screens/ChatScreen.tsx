@@ -91,7 +91,7 @@ export const ChatScreen: React.FC = () => {
                     </View>
                     <View>
                         <Text style={styles.headerTitle} accessibilityRole="header">
-                            Chat con Gemini
+                            Chat con la IA
                         </Text>
                         <View style={styles.headerStatusRow}>
                             <Ionicons
